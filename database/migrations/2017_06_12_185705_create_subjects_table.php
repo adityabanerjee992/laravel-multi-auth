@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChildrenTable extends Migration
+class CreateSubjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateChildrenTable extends Migration
      */
     public function up()
     {
-        Schema::create('children', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('user_name');
-            $table->string('school_name');
-            $table->string('email');
-            $table->string('password');
-            $table->date('date_of_birth');
-            $table->integer('parents_id');
-            $table->integer('plan_id');
+            $table->integer('active')->default(1);
             $table->timestamps();
         });
     }
@@ -34,6 +28,6 @@ class CreateChildrenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('children');
+        Schema::dropIfExists('subjects');
     }
 }

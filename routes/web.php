@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/add-subjects', function() {
+	$subjects = ['physics', 'maths', 'science', 'politics', 'engineering'];
+	foreach($subjects as $subject) {
+		App\Subject::create(['name' => $subject]);
+		echo "done";
+	}
+	
+});
+
