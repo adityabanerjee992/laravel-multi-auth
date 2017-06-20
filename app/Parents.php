@@ -2,10 +2,13 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Parents extends Model
-{
+class Parents extends Authenticatable
+{   
+    use Notifiable;
+    
     /**
 	 * mass assignment
 	 * @var array
@@ -37,5 +40,16 @@ class Parents extends Model
     public function children()
     {
     	return $this->hasMany('App\Child', 'parents_id');
+    }
+
+
+    /**
+     * get parent id from the email.
+     * @param  $email 
+     * @return string
+     */
+    public static function getIdFromEmail($email)
+    {
+        return static::where('email', $email)->first()->id;
     }
 }

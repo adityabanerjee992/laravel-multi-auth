@@ -2,11 +2,13 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Child extends Model
+class Child extends Authenticatable
 {	
-	
+	use Notifiable;
+
 	/**
 	 * mass assignment
 	 * @var array
@@ -18,7 +20,8 @@ class Child extends Model
 	    'school_name', 
 	    'email', 
 	    'date_of_birth', 
-	    'parent_id',
+	    'parents_id',
+        'plan_id',
 	    'password',
     ];
 

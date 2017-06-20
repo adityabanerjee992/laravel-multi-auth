@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('test-methods', function(){
+	$email = 'aditya@gmail.com';
+	$id = App\Parents::getIdFromEmail($email);
+	echo "<pre>";
+	print_r($id);
+});
+
+Route::get('/auth-check', function () {
+    $auth = Auth::guard('parents');
+    echo "<pre>";
+    print_r($auth->check());
+});
+
 Route::get('/add-subjects', function() {
 	$subjects = ['physics', 'maths', 'science', 'politics', 'engineering'];
 	foreach($subjects as $subject) {
@@ -24,3 +37,13 @@ Route::get('/add-subjects', function() {
 	
 });
 
+Route::get('out', function(){
+	Auth::logout();
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/parent', 'ParentController@index')->name('home.parent');
+Route::get('/student', 'ChildController@index')->name('home.student');
+Route::get('/teacher', 'TeacherController@index')->name('home.teacher');
